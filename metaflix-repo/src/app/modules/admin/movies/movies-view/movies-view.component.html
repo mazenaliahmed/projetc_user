@@ -1,0 +1,52 @@
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- Content -->
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- Main -->
+
+<div class="flex items-center">
+    <div class="mb-2 flex w-140 flex-col gap-1">
+        <mat-form-field class="mb-4" subscriptSizing="fixed">
+            <mat-select
+                placeholder="Select role  "
+                (selectionChange)="getDateForByRole($event)"
+            >
+                @for (item of role(); track item) {
+                    <mat-option [value]="item.name"
+                        >{{ item.name }}
+                    </mat-option>
+                }
+            </mat-select>
+            <mat-icon class="icon-size-5"></mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="mb-2 flex w-140 flex-col gap-1">
+        <mat-form-field class="mb-4" subscriptSizing="fixed">
+            <mat-select
+                placeholder="Select status  "
+                (selectionChange)="getDateForByStatus($event)"
+            >
+                @for (item of status(); track item) {
+                    <mat-option [value]="item.name">
+                        {{ item.name }}</mat-option
+                    >
+                }
+            </mat-select>
+            <mat-icon class="icon-size-5"></mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+<div class="flex flex-auto flex-col p-6 sm:p-10">
+    <app-movies-table
+        tableTitle="users"
+        tableSubtitle="List of all users available"
+        class="grow"
+        [data]="displayedFieldsInTable()"
+        (rowClicked)="viewMovieDetails($event)"
+        (filtersChanged)="filterMovies($event)"
+        (editBtnClicked)="editMovie($event)"
+        (deleteMultipleBtnClicked)="deleteMultipleMovies($event)"
+        (deleteBtnClicked)="deleteMovie($event)"
+        [paginatorOptions]="paginatorOptions()"
+    >
+    </app-movies-table>
+</div>

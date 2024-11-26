@@ -1,0 +1,67 @@
+@defer (when movie()) {
+    <div class="grid max-h-full grid-rows-[1fr_auto] overflow-hidden">
+        <div class="space-y-3 overflow-x-hidden overflow-y-scroll p-6">
+            <div class="relative grid gap-2">
+                <div class="flex items-center justify-end">
+                    <!-- <h2 class="text-2xl font-bold">{{ movie().name }}</h2> -->
+                    <a
+                        mat-icon-button
+                        [routerLink]="['../../']"
+                        class="absolute right-3 top-5 bg-black transition-all hover:brightness-150 active:scale-90 [&_svg]:stroke-white"
+                    >
+                        <mat-icon
+                            [svgIcon]="'heroicons_outline:x-mark'"
+                        ></mat-icon>
+                    </a>
+                </div>
+                <!-- <img
+                                class="shadow-lg rounded-3xl"
+                                [src]="movie().poster_url"
+                                [alt]="movie().name"
+                            /> -->
+                <img
+                    class="max-w-full rounded-3xl object-cover shadow-lg"
+                    src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1LRLLWGvs5sZdTzuMqLEahb88Pc.jpg"
+                    [alt]="movie().name"
+                />
+            </div>
+            <h2 class="text-2xl font-bold">{{ movie().name }}</h2>
+            <div class="flex items-start justify-between">
+                <div>
+                    <div class="text-sm text-gray-400">email</div>
+                    <div class="text-lg text-gray-800">
+                        {{ movie().email }}
+                    </div>
+                </div>
+                <div
+                    class="grid h-8 place-items-center rounded-xl bg-yellow-400 px-2 font-bold"
+                >
+                    {{ movie().status }}
+                </div>
+            </div>
+
+            <p class="line-clamp-5 text-gray-400">
+                {{ movie().role }}
+            </p>
+            <div class="text-a flex text-2xl font-bold">$83.90</div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex w-full gap-4 p-6">
+            <button
+                [routerLink]="['/movies/edit/', movie().id]"
+                class="flex-auto bg-black text-white"
+                mat-flat-button
+            >
+                Edit
+            </button>
+            <button
+                class="flex-auto"
+                (click)="deleteMovie()"
+                mat-stroked-button
+            >
+                Delete
+            </button>
+        </div>
+    </div>
+}

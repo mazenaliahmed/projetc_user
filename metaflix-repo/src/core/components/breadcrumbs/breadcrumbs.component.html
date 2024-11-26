@@ -1,0 +1,22 @@
+<div>
+    <div class="flex flex-wrap items-center gap-1 font-medium">
+        @for (link of breadcrumbs(); track link) {
+            <div class="flex items-center gap-1 whitespace-nowrap">
+                <a
+                    class="whitespace-nowrap"
+                    [ngClass]="{
+                        'text-secondary': $last,
+                        'text-primary-500': !$last,
+                    }"
+                    >{{ link }}</a
+                >
+                @if (!$last) {
+                    <mat-icon
+                        class="text-secondary icon-size-5"
+                        [svgIcon]="'heroicons_mini:chevron-right'"
+                    ></mat-icon>
+                }
+            </div>
+        }
+    </div>
+</div>

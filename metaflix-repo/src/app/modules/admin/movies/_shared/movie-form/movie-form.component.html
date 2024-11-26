@@ -1,0 +1,134 @@
+<form [formGroup]="movieForm" #formEl>
+    <!-- Alert -->
+    @if (showAlert()) {
+        <fuse-alert
+            class="mb-3"
+            [appearance]="'outline'"
+            [showIcon]="false"
+            [type]="alert().type"
+            [@shake]="alert().type === 'error'"
+            #fuseAlert
+        >
+            <span [innerHTML]="alert().message"></span>
+        </fuse-alert>
+    }
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Name -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <mat-form-field class="w-full" subscriptSizing="fixed">
+        <mat-label>Name</mat-label>
+        <input id="name" matInput formControlName="name" />
+        @if (control('name').hasError('required')) {
+            <mat-error> user name is required </mat-error>
+        }
+    </mat-form-field>
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Released At -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <mat-form-field class="mb-2 w-full" subscriptSizing="fixed">
+        <mat-label>Email</mat-label>
+        <input id="email" type="email" matInput formControlName="email" />
+        @if (control('email').hasError('required')) {
+            <mat-error> Release date is required </mat-error>
+        }
+        <mat-hint>please enter your email</mat-hint>
+    </mat-form-field>
+
+    <div class="mb-2 flex flex-col gap-1">
+        <mat-label
+            class="font-Inter text-base font-medium leading-tight text-gray-800"
+            >role*</mat-label
+        >
+        <mat-form-field class="mb-4 w-full" subscriptSizing="fixed">
+            <mat-select placeholder="Select role  " formControlName="role">
+                @for (item of role(); track item) {
+                    <mat-option [value]="item.name"
+                        >{{ item.name }}
+                    </mat-option>
+                }
+            </mat-select>
+            <mat-icon class="icon-size-5"></mat-icon>
+            <mat-hint class="text-base">
+                please select the type of insurance coverage you currently have.
+            </mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="mb-2 flex flex-col gap-1">
+        <mat-label
+            class="font-Inter text-base font-medium leading-tight text-gray-800"
+            >status*</mat-label
+        >
+        <mat-form-field class="mb-4 w-full" subscriptSizing="fixed">
+            <mat-select placeholder="Select status  " formControlName="status">
+                @for (item of status(); track item) {
+                    <mat-option [value]="item.name">
+                        {{ item.name }}</mat-option
+                    >
+                }
+            </mat-select>
+            <mat-icon class="icon-size-5"></mat-icon>
+            <mat-hint class="text-base">
+                please select the type of insurance coverage you currently have.
+            </mat-hint>
+        </mat-form-field>
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Synopsis -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Duration -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Average Rating  -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Directors -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Cast Members -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Domains -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- <mat-form-field class="w-full" subscriptSizing="fixed">
+        <mat-label>Choose Domains</mat-label>
+        <mat-select
+            placeholder="Choose Domains"
+            formControlName="domains"
+            multiple
+        >
+            <mat-select-trigger>
+                {{ selectedDomains()?.[0] || '' }}
+                @if ((selectedDomains()?.length || 0) > 1) {
+                    <span class="example-additional-selection">
+                        (+{{ (selectedDomains()?.length || 0) - 1 }}
+                        {{
+                            selectedDomains()?.length === 2
+                                ? 'other'
+                                : 'others'
+                        }})
+                    </span>
+                }
+            </mat-select-trigger>
+            @for (domain of domains(); track domain) {
+                @defer (on viewport) {
+                    <mat-option [value]="domain.id || domain.domain_name">{{
+                        domain.domain_name
+                    }}</mat-option>
+                } @placeholder {
+                    <mat-option disabled> No directors available </mat-option>
+                }
+            }
+        </mat-select>
+    </mat-form-field> -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- Genres -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+</form>

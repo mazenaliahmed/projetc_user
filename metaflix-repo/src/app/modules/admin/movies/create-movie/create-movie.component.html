@@ -1,0 +1,39 @@
+<div class="grid h-full w-full grid-rows-[auto_1fr_auto] gap-4 p-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold">New Users</h1>
+            <p class="text-sm text-gray-500">Add a new users to the database</p>
+        </div>
+        <a
+            mat-icon-button
+            [routerLink]="['../../']"
+            class="-me-1 grid size-10 place-items-center rounded-full bg-primary-50 transition-all hover:brightness-90 active:scale-90 [&_svg]:stroke-primary-900"
+        >
+            <mat-icon [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+        </a>
+    </div>
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <!-- New Movie Form -->
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+    <movie-form
+        [alert]="alert()"
+        [showAlert]="showAlert()"
+        class="h-full overflow-y-scroll"
+        #movieForm
+    ></movie-form>
+
+    <!-- Actions -->
+    <div class="flex w-full gap-4">
+        <button [routerLink]="['../../']" class="flex-auto" mat-stroked-button>
+            Cancel
+        </button>
+        <button
+            class="flex-auto text-white"
+            (click)="submit()"
+            mat-flat-button
+            color="primary"
+        >
+            Submit
+        </button>
+    </div>
+</div>

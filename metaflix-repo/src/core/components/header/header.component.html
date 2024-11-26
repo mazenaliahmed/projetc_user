@@ -1,0 +1,20 @@
+<header
+    class="bg-card flex flex-0 flex-col border-b p-6 dark:bg-transparent sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-8"
+>
+    <div class="min-w-0 flex-1">
+        <!-- Breadcrumbs -->
+        <app-breadcrumbs [breadcrumbs]="breadcrumbs()"></app-breadcrumbs>
+        <!-- Title -->
+        <div class="mt-2">
+            <h2
+                class="truncate text-3xl font-extrabold leading-7 tracking-tight sm:leading-10 md:text-4xl"
+            >
+                {{ pageTitle() }}
+            </h2>
+        </div>
+    </div>
+    <!-- Actions -->
+    <div class="mt-6 flex shrink-0 items-center sm:ml-4 sm:mt-0">
+        <ng-content> </ng-content>
+    </div>
+</header>

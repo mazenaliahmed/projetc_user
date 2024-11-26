@@ -1,0 +1,166 @@
+<div
+    class="flex min-w-0 flex-auto flex-col items-center bg-stone-100 sm:flex-row sm:justify-center md:items-start md:justify-start"
+>
+    <div
+        class="w-full px-4 py-8 sm:bg-card sm:w-auto sm:rounded-2xl sm:p-12 sm:shadow md:flex md:h-full md:w-1/2 md:items-center md:justify-end md:rounded-none md:p-16 md:shadow-none"
+    >
+        <div class="mx-auto w-full max-w-80 sm:mx-0 sm:w-80">
+            <!-- Logo -->
+            <div class="w-12">
+                <img src="images/logo/logo.svg" />
+            </div>
+
+            <!-- Title -->
+            <div
+                class="mt-8 text-4xl font-extrabold leading-tight tracking-tight"
+            >
+                Sign in
+            </div>
+            <div class="mt-0.5 flex items-baseline font-medium">
+                <div>welcome to metaflix</div>
+            </div>
+
+            <!-- Alert -->
+            <fuse-alert
+                class="mt-8"
+                [appearance]="'outline'"
+                [showIcon]="false"
+                [type]="'accent'"
+            >
+                This dashboard is <strong>For Admins Only</strong>. download
+                Metaflix app to watch movies and TV shows.
+            </fuse-alert>
+
+            <!-- Alert -->
+            @if (showAlert) {
+                <fuse-alert
+                    class="mt-8"
+                    [appearance]="'outline'"
+                    [showIcon]="false"
+                    [type]="alert.type"
+                    [@shake]="alert.type === 'error'"
+                >
+                    {{ alert.message }}
+                </fuse-alert>
+            }
+
+            <!-- Sign in form -->
+            <form class="mt-8" [formGroup]="signInForm" #signInNgForm="ngForm">
+                <!-- Email field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Email address</mat-label>
+                    <input id="email" matInput [formControlName]="'email'" />
+                    @if (signInForm.get('email').hasError('required')) {
+                        <mat-error> Email address is required </mat-error>
+                    }
+                    @if (signInForm.get('email').hasError('email')) {
+                        <mat-error>
+                            Please enter a valid email address
+                        </mat-error>
+                    }
+                </mat-form-field>
+
+                <!-- Password field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Password</mat-label>
+                    <input
+                        id="password"
+                        matInput
+                        type="password"
+                        [formControlName]="'password'"
+                        #passwordField
+                    />
+                    <button
+                        mat-icon-button
+                        type="button"
+                        (click)="
+                            passwordField.type === 'password'
+                                ? (passwordField.type = 'text')
+                                : (passwordField.type = 'password')
+                        "
+                        matSuffix
+                    >
+                        @if (passwordField.type === 'password') {
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:eye'"
+                            ></mat-icon>
+                        }
+                        @if (passwordField.type === 'text') {
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:eye-slash'"
+                            ></mat-icon>
+                        }
+                    </button>
+                    <mat-error> Password is required </mat-error>
+                </mat-form-field>
+
+                <!-- Submit button -->
+                <button
+                    class="fuse-mat-button-large w-full"
+                    mat-flat-button
+                    [color]="'primary'"
+                    [disabled]="signInForm.disabled"
+                    (click)="signIn()"
+                >
+                    @if (!signInForm.disabled) {
+                        <span> Sign in </span>
+                    }
+                    @if (signInForm.disabled) {
+                        <mat-progress-spinner
+                            [diameter]="24"
+                            [mode]="'indeterminate'"
+                        ></mat-progress-spinner>
+                    }
+                </button>
+            </form>
+        </div>
+    </div>
+    <div
+        class="relative hidden h-full w-1/2 flex-auto items-center justify-center overflow-hidden bg-black p-16 dark:border-l md:flex lg:px-28"
+    >
+        <img
+            class="absolute left-0 top-0 z-10 h-full w-full origin-top-left scale-150 object-cover"
+            src="/images/bg.png"
+            alt="bg"
+        />
+
+        <!-- Content -->
+        <div class="relative z-10 w-full max-w-xl">
+            <div class="text-7xl font-bold leading-none text-neutral-100">
+                <div>Welcome to</div>
+                <div>Metaflix</div>
+            </div>
+            <div
+                class="mt-6 text-pretty text-lg leading-6 tracking-tight text-neutral-400"
+            >
+                A place where you can watch your favorite movies and TV shows
+                anytime, anywhere.
+            </div>
+            <div class="mt-8 flex items-center">
+                <div class="flex flex-0 items-center -space-x-1.5">
+                    <img
+                        class="h-10 w-10 flex-0 rounded-full object-cover ring-4 ring-black ring-offset-1 ring-offset-black"
+                        src="images/avatars/female-18.jpg"
+                    />
+                    <img
+                        class="h-10 w-10 flex-0 rounded-full object-cover ring-4 ring-black ring-offset-1 ring-offset-black"
+                        src="images/avatars/female-11.jpg"
+                    />
+                    <img
+                        class="h-10 w-10 flex-0 rounded-full object-cover ring-4 ring-black ring-offset-1 ring-offset-black"
+                        src="images/avatars/male-09.jpg"
+                    />
+                    <img
+                        class="h-10 w-10 flex-0 rounded-full object-cover ring-4 ring-black ring-offset-1 ring-offset-black"
+                        src="images/avatars/male-16.jpg"
+                    />
+                </div>
+                <div class="ml-4 font-medium tracking-tight text-neutral-400">
+                    More than 17k people joined us, it's your turn
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
